@@ -1,0 +1,41 @@
+
+================================================================
+           FRAUD DETECTION - BUSINESS IMPACT REPORT             
+================================================================
+
+  Model: Random Forest (Undersampled)
+
+  DETECTION PERFORMANCE
+  ---------------------
+  Fraud cases correctly detected (TP):        98
+  Fraud cases missed (FN):                     0
+  Legitimate flagged as fraud (FP):            3
+  Legitimate correctly passed (TN):       56,861
+
+  BUSINESS METRICS
+  ----------------
+  Fraud Detection Rate (Recall):   100.00%
+  False Alarm Rate (FPR):            0.01%
+  Precision (of alerts):            97.03%
+
+  TRADE-OFF ANALYSIS
+  ------------------
+  For every 100 fraud attempts:
+    [DETECTED]  100.0 are correctly detected and blocked
+    [MISSED]      0.0 slip through undetected
+
+  For every 100 fraud alerts raised:
+    [ACCURATE]   97.0 are actual fraud cases
+    [FALSE]       3.0 are false alarms (legitimate transactions)
+
+================================================================
+
+BUSINESS INTERPRETATION:
+1. Missed Fraud Cost: The model misses 0 fraudulent transactions out of 98.
+   If average fraud amount is $500, potential undetected loss = $0
+
+2. Customer Impact: 3 legitimate customers may experience blocked transactions
+   or receive fraud alerts. This is 0.0053% of all legitimate transactions.
+
+3. Recommendation: High recall model - good for minimizing missed fraud.
+   False alarm rate is acceptable.
