@@ -1,0 +1,11 @@
+# Ignore Streamlit application files from Vercel Serverless Function scanning
+# Streamlit is a stateful WebSocket server and cannot run inside stateless serverless functions.
+app/
+src/
+models/
+data/
+notebooks/
+reports/
+requirements.txt
+requirements-dev.txt
+.streamlit/

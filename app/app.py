@@ -329,12 +329,18 @@ def get_predictor():
 
 @st.cache_data
 def get_dataset():
-    """Load transaction dataset from disk."""
+    """Load transaction dataset from disk. If absent in cloud deployment, generate benchmark dataset."""
     base_dir = os.path.dirname(os.path.dirname(__file__))
-    data_path = os.path.join(base_dir, 'data', 'creditcard.csv')
+    data_dir = os.path.join(base_dir, 'data')
+    data_path = os.path.join(data_dir, 'creditcard.csv')
     if os.path.exists(data_path):
         return pd.read_csv(data_path)
-    return None
+    try:
+        from data_preprocessing import generate_synthetic_data
+        os.makedirs(data_dir, exist_ok=True)
+        return generate_synthetic_data(n_samples=284807, fraud_ratio=0.00173, output_path=data_path)
+    except Exception as e:
+        return None
 
 
 @st.cache_data
